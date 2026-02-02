@@ -7,7 +7,7 @@ on:
     - main
 
 env:
-  AZURE_WEBAPP_NAME: weather-forecast-api
+  AZURE_WEBAPP_NAME: test-api-net
   AZURE_WEBAPP_PACKAGE_PATH: "./publish"
     
 jobs:
@@ -20,7 +20,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '6.0.x'
+          dotnet-version: '8.0.x'
 
       - name: Restore
         run: dotnet restore ./WebApplication1.sln
@@ -29,7 +29,7 @@ jobs:
         run: dotnet build ./WebApplication1.sln --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish ./WebApplication1.sln --configuration Release --no-build --output '${{env.AZURE_WEBAPP_PACKAGE_PATH}}'
+        run: dotnet publish ./WebApplication1/WebApplication1.csproj --configuration Release --no-build --output '${{env.AZURE_WEBAPP_PACKAGE_PATH}}'
 
       - name: Deployment
         uses: azure/webapps-deploy@v2
