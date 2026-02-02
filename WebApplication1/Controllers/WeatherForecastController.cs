@@ -18,6 +18,12 @@ namespace WebApplication1.Controllers
             _logger = logger;
         }
 
+        [HttpGet("hello")]
+        public string GetHello()
+        {
+            return "La API está viva y funcionando en Azure";
+        }
+
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
